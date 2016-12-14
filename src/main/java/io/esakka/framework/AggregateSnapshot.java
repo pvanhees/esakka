@@ -8,6 +8,19 @@ import org.neo4j.ogm.annotation.NodeEntity;
 @NodeEntity
 public class AggregateSnapshot {
 
-    private String aggregateId;
-    private Long sequenceNr;
+    private final Long sequenceNr;
+    private final Aggregate aggregate;
+
+    public AggregateSnapshot(final Long sequenceNr, final Aggregate aggregate) {
+        this.sequenceNr = sequenceNr;
+        this.aggregate = aggregate;
+    }
+
+    public Aggregate getAggregate() {
+        return aggregate;
+    }
+
+    public Long getSequenceNr() {
+        return sequenceNr;
+    }
 }

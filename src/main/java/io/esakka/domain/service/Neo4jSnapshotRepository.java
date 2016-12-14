@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * Created by pieter on 12/8/16.
  */
 @Repository
-public interface Neo4jSnapshotRepository extends GraphRepository<Customer>, SnapshotRepository<Customer> {
+public interface Neo4jSnapshotRepository extends GraphRepository<Customer>, SnapshotRepository {
 
 }

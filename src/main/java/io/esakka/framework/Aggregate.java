@@ -1,22 +1,20 @@
 package io.esakka.framework;
 
+import akka.actor.AbstractLoggingActor;
+
 /**
  * Created by pieter on 12/9/16.
  */
-public abstract class Aggregate {
+public abstract class Aggregate extends AbstractLoggingActor {
 
-    private final String aggregateId;
+    public Behavior behavior;
 
-    public Aggregate(final String aggregateId) {
-        this.aggregateId = aggregateId;
+    public Aggregate() {
+        this.behavior = getBehavior();
     }
 
-    public String getAggregateId() {
-        return aggregateId;
-    }
-
+    public abstract String getAggregateId();
     public abstract Behavior getBehavior();
-
 
     @Override
     public boolean equals(final Object o) {
@@ -25,11 +23,11 @@ public abstract class Aggregate {
 
         final Aggregate aggregate = (Aggregate) o;
 
-        return aggregateId.equals(aggregate.aggregateId);
+        return getAggregateId() != null ? getAggregateId().equals(aggregate.getAggregateId()) : aggregate.getAggregateId() == null;
     }
 
     @Override
     public int hashCode() {
-        return aggregateId.hashCode();
+        return getAggregateId() != null ? getAggregateId().hashCode() : 0;
     }
 }
